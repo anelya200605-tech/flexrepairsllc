@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flex Repairs | Book Appliance Service</title>
+  <meta
+    name="description"
+    content="Minimalist appliance repair booking flow for Flex Repairs."
+  >
+  <link rel="canonical" href="https://flexrepairsllc.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+	    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css?v=20260412-brands89">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Flex Repairs home">
+        <img
+          class="brand-logo-image"
+          src="flex-repairs-logo-orange-tall-balanced.png"
+          alt="Flex Repairs LLC logo"
+        >
+      </a>
+
+      <div class="topbar-actions">
+        <a
+          class="ghost-button call-button"
+          href="tel:+18144037859"
+          data-call-trigger
+          aria-controls="call-chip-header"
+          aria-expanded="false"
+        >
+          Call
+        </a>
+        <button class="primary-button" type="button" data-jump-to="1">Book now</button>
+        <a class="call-chip" id="call-chip-header" href="tel:+18144037859" hidden>
+          <span class="call-chip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6.6 3H9.4C10 3 10.5 3.4 10.7 4L11.8 7.6C12 8.1 11.8 8.8 11.3 9.2L9.8 10.4C10.7 12.3 12.2 13.8 14.1 14.7L15.3 13.2C15.7 12.7 16.4 12.5 16.9 12.7L20.5 13.8C21.1 14 21.5 14.5 21.5 15.1V17.9C21.5 18.8 20.8 19.5 19.9 19.5H18.5C9.9 19.5 3 12.6 3 4V2.6C3 1.7 3.7 1 4.6 1H6.6Z"></path>
+            </svg>
+          </span>
+          <span>+1 (814) 403-7859</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="top" class="flow-layout">
+      <section class="intro-panel">
+        <p class="kicker">Fast and minimal</p>
+        <h1>Book appliance repair without a messy form.</h1>
+        <p class="intro-copy">
+          Choose the appliance, tell us what is wrong, add your address and contact details,
+          then send the request online or call directly.
+        </p>
+
+        <div class="intro-pills">
+          <span>Refrigerator</span>
+          <span>Washer</span>
+          <span>Dryer</span>
+          <span>Cooktop</span>
+          <span>Oven</span>
+          <span>Dishwasher</span>
+        </div>
+
+        <div class="intro-note">
+          Select an appliance first, then the flow will guide the customer step by step.
+        </div>
+      </section>
+
+      <section class="booking-panel">
+        <div class="progress-head">
+          <div>
+            <p class="kicker">Request service</p>
+            <h2>Tell us what you need</h2>
+          </div>
+          <div class="step-indicator">
+            <span id="step-label">Step 1 of 7</span>
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          </div>
+        </div>
+
+        <form id="booking-form" class="booking-form" novalidate>
+          <section class="flow-step active" data-step="1">
+            <div class="step-copy">
+              <h3>Select your appliance</h3>
+              <p>Tap one option to continue. The selected appliance will stay highlighted.</p>
+            </div>
+
+            <div class="appliance-grid" id="appliance-grid">
+              <button class="choice-card" type="button" data-field="appliance" data-value="Refrigerator">
+                <span class="icon appliance-icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="18" y="6" width="28" height="52" rx="8"></rect>
+                    <path d="M18 26H46"></path>
+                    <path d="M24 14V20"></path>
+                    <path d="M24 34V47"></path>
+                  </svg>
+                </span>
+                <strong class="appliance-name">Refrigerator</strong>
+              </button>
+              <button class="choice-card" type="button" data-field="appliance" data-value="Washer">
+                <span class="icon appliance-icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="10" y="8" width="44" height="48" rx="10"></rect>
+                    <circle cx="32" cy="34" r="12"></circle>
+                    <path d="M19 17H23"></path>
+                    <path d="M27 17H31"></path>
+                    <path d="M35 17H39"></path>
+                  </svg>
+                </span>
+                <strong class="appliance-name">Washer</strong>
+              </button>
+              <button class="choice-card" type="button" data-field="appliance" data-value="Dryer">
+                <span class="icon appliance-icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="10" y="8" width="44" height="48" rx="10"></rect>
+                    <circle cx="32" cy="34" r="12"></circle>
+                    <path d="M19 17H23"></path>
+                    <path d="M27 17H31"></path>
+                    <path d="M31 34C33.5 29 40 29.5 41.5 35C42.7 39.5 38.5 44 33.5 44C29.5 44 25.8 41.2 24.5 37.8"></path>
+                  </svg>
+                </span>
+                <strong class="appliance-name">Dryer</strong>
+              </button>
+              <button class="choice-card" type="button" data-field="appliance" data-value="Cooktop">
+                <span class="icon appliance-icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="8" y="16" width="48" height="32" rx="8"></rect>
+                    <circle cx="23" cy="27" r="5"></circle>
+                    <circle cx="41" cy="27" r="5"></circle>
+                    <circle cx="23" cy="39" r="5"></circle>
+                    <circle cx="41" cy="39" r="5"></circle>
+                  </svg>
+                </span>
+                <strong class="appliance-name">Cooktop</strong>
+              </button>
+              <button class="choice-card" type="button" data-field="appliance" data-value="Oven">
+                <span class="icon appliance-icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="10" y="10" width="44" height="44" rx="8"></rect>
+                    <path d="M10 22H54"></path>
+                    <circle cx="20" cy="16" r="1.5" fill="currentColor" stroke="none"></circle>
+                    <circle cx="27" cy="16" r="1.5" fill="currentColor" stroke="none"></circle>
+                    <circle cx="34" cy="16" r="1.5" fill="currentColor" stroke="none"></circle>
+                    <rect x="20" y="30" width="24" height="16" rx="3"></rect>
+                  </svg>
+                </span>
+                <strong class="appliance-name">Oven</strong>
+              </button>
+              <button class="choice-card" type="button" data-field="appliance" data-value="Dishwasher">
+                <span class="icon appliance-icon" aria-hidden="true">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <rect x="10" y="8" width="44" height="48" rx="10"></rect>
+                    <path d="M18 18H46"></path>
+                    <path d="M22 28C25 24 29 24 32 28C35 32 39 32 42 28"></path>
+                    <path d="M22 37C25 33 29 33 32 37C35 41 39 41 42 37"></path>
+                  </svg>
+                </span>
+                <strong class="appliance-name">Dishwasher</strong>
+              </button>
+            </div>
+          </section>
+
+          <section class="flow-step" data-step="2">
+            <div class="step-copy">
+              <h3>What is the problem?</h3>
+              <p>These options update based on the appliance you selected.</p>
+            </div>
+
+            <div class="choice-list" id="issue-list"></div>
+          </section>
+
+          <section class="flow-step" data-step="3">
+            <div class="step-copy">
+              <h3>What brand is it?</h3>
+              <p>Select the appliance brand to continue.</p>
+            </div>
+
+            <div class="brand-grid" id="brand-grid"></div>
+          </section>
+
+          <section class="flow-step" data-step="4">
+            <div class="step-copy">
+              <h3>Where do you live?</h3>
+              <p>Start with ZIP code, then add the exact address.</p>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>ZIP code</span>
+                <input type="text" name="zipCode" placeholder="60618" inputmode="numeric" maxlength="10" autocomplete="postal-code" required>
+              </label>
+              <label class="field">
+                <span>City</span>
+                <input type="text" name="city" placeholder="Chicago" autocomplete="address-level2">
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Street address</span>
+                <input type="text" name="address" placeholder="1234 N Example Ave, Apt 2B" autocomplete="street-address" required>
+            </label>
+          </section>
+
+          <section class="flow-step" data-step="5">
+            <div class="step-copy">
+              <h3>How can we reach you?</h3>
+              <p>So we can confirm your request and schedule service.</p>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>First name</span>
+                <input type="text" name="firstName" placeholder="John" autocomplete="given-name" required>
+              </label>
+              <label class="field">
+                <span>Last name</span>
+                <input type="text" name="lastName" placeholder="Smith" autocomplete="family-name">
+              </label>
+            </div>
+
+            <div class="field-grid two">
+              <label class="field">
+                <span>Phone number</span>
+                <input type="tel" name="phone" placeholder="+1 (312) 555-0123" autocomplete="tel" required>
+              </label>
+              <label class="field">
+                <span>Email</span>
+                <input type="email" name="email" placeholder="you@example.com" autocomplete="email">
+              </label>
+            </div>
+          </section>
+
+          <section class="flow-step" data-step="6">
+            <div class="step-copy">
+              <h3>What date and time work best?</h3>
+              <p>Choose a preferred date and an open time window for the visit.</p>
+            </div>
+
+            <div class="availability-block">
+              <div class="availability-head">
+                <strong>Select a date</strong>
+                <span>Dates keep moving forward automatically.</span>
+              </div>
+              <div class="date-grid" id="date-grid" tabindex="-1"></div>
+            </div>
+
+            <div class="availability-block">
+              <div class="availability-head">
+                <strong>Select a time window</strong>
+                <span>Gray time windows are already booked.</span>
+              </div>
+              <div class="time-grid" id="time-grid" tabindex="-1"></div>
+            </div>
+
+            <label class="field">
+              <span>Extra notes</span>
+              <textarea name="notes" rows="4" placeholder="Gate code, parking note, appliance location, timing preferences..."></textarea>
+            </label>
+
+            <div class="callout">
+              The selected date and time will be added to the request details.
+            </div>
+          </section>
+
+          <section class="flow-step" data-step="7">
+            <div class="step-copy">
+              <h3>Review your request</h3>
+              <p>One last check before sending.</p>
+            </div>
+
+            <div class="summary-card" id="summary-card"></div>
+
+            <div class="final-actions">
+              <button class="primary-button" type="submit">Request service</button>
+              <button class="ghost-button" type="button" data-jump-to="5">Edit request</button>
+            </div>
+          </section>
+
+          <div class="form-message" id="form-message" aria-live="polite" hidden></div>
+
+          <div class="flow-footer">
+            <button class="nav-button" id="back-button" type="button">Back</button>
+            <button class="nav-button primary-nav" id="next-button" type="button">Next</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <section class="trust-section">
+      <div class="trust-copy">
+        <p class="kicker">Why Flex Repairs</p>
+        <h2>Professional appliance repair with a clean process and real accountability.</h2>
+
+        <div class="trust-points">
+          <div class="trust-point">
+            <span class="trust-label">Licensed</span>
+            <p>Professional service you can trust inside your home.</p>
+          </div>
+          <div class="trust-point">
+            <span class="trust-label">Insured</span>
+            <p>Protected work, careful support, and a more confident service experience.</p>
+          </div>
+          <div class="trust-point">
+            <span class="trust-label">Experienced technician</span>
+            <p>Hands-on appliance repair experience across major household brands.</p>
+          </div>
+        </div>
+
+        <div class="trust-message">
+          <p>
+            Flex Repairs helps homeowners fix appliance problems without the usual stress,
+            confusion, or messy booking experience.
+          </p>
+          <p>
+            We will be glad to help diagnose the issue, explain the next step clearly,
+            and get your appliance working again as quickly as possible.
+          </p>
+        </div>
+      </div>
+
+      <div class="trust-cards">
+        <article class="mini-card">
+          <strong>Clear communication</strong>
+          <p>No confusing flow, no overloaded page, just a simple path to request service.</p>
+        </article>
+        <article class="mini-card">
+          <strong>Major brands covered</strong>
+          <p>Samsung, LG, Whirlpool, GE, Bosch, KitchenAid, Thermador, Sub-Zero, Viking, Cove, Maytag and more.</p>
+        </article>
+        <article class="mini-card">
+          <strong>Fast request handling</strong>
+          <p>Send a request online and get a fast response to confirm service and availability.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reviews-section">
+      <div class="section-head">
+        <p class="kicker">Reviews</p>
+        <h2>Trusted by local customers</h2>
+      </div>
+
+      <div class="rating-strip">
+        <div class="rating-card">
+          <strong>Google</strong>
+          <span>Recommended • 5-star experience</span>
+        </div>
+        <div class="rating-card">
+          <strong>Yelp</strong>
+          <span>Recommended by homeowners</span>
+        </div>
+        <div class="rating-card">
+          <strong>Flex Repairs</strong>
+          <span>Friendly communication and reliable appliance support</span>
+        </div>
+      </div>
+
+      <div class="review-grid">
+        <article class="review-card">
+          <p>“Booking was simple, the technician showed up on time, and our washer was fixed fast.”</p>
+          <strong>Maria R.</strong>
+        </article>
+        <article class="review-card">
+          <p>“Very clean process from request to scheduling. The issue with our oven was explained clearly.”</p>
+          <strong>Daniel T.</strong>
+        </article>
+        <article class="review-card">
+          <p>“Professional, honest and easy to communicate with. I would absolutely use Flex Repairs again.”</p>
+          <strong>Elena K.</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="bottom-cta">
+      <div>
+        <p class="kicker">Need help now?</p>
+        <h2>Call Flex Repairs now or send a request online.</h2>
+      </div>
+      <div class="bottom-cta-actions">
+        <a
+          class="ghost-button call-button"
+          href="tel:+18144037859"
+          data-call-trigger
+          aria-controls="call-chip-footer"
+          aria-expanded="false"
+        >
+          Call
+        </a>
+        <button class="primary-button" type="button" data-jump-to="1">Request service</button>
+        <a class="call-chip call-chip-dark" id="call-chip-footer" href="tel:+18144037859" hidden>
+          <span class="call-chip-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M6.6 3H9.4C10 3 10.5 3.4 10.7 4L11.8 7.6C12 8.1 11.8 8.8 11.3 9.2L9.8 10.4C10.7 12.3 12.2 13.8 14.1 14.7L15.3 13.2C15.7 12.7 16.4 12.5 16.9 12.7L20.5 13.8C21.1 14 21.5 14.5 21.5 15.1V17.9C21.5 18.8 20.8 19.5 19.9 19.5H18.5C9.9 19.5 3 12.6 3 4V2.6C3 1.7 3.7 1 4.6 1H6.6Z"></path>
+            </svg>
+          </span>
+          <span>+1 (814) 403-7859</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script src="script-v2.js?v=20260412-brands89"></script>
+</body>
+</html>

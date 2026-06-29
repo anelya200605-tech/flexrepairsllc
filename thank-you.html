@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | Flex Repairs</title>
+  <meta name="description" content="Flex Repairs booking confirmation page.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260412-thanks89">
+</head>
+<body>
+  <div class="app-shell thank-you-shell">
+    <main class="thank-you-layout confirmation-layout">
+      <section class="thank-you-panel confirmation-panel">
+        <div class="confirmation-hero">
+          <a class="brand confirmation-brand" href="/" aria-label="Flex Repairs home">
+            <img
+              class="brand-logo-image confirmation-logo"
+              src="flex-repairs-logo-orange-tall-balanced.png"
+              alt="Flex Repairs LLC logo"
+            >
+          </a>
+
+          <h1 id="confirmation-heading">Thank you!</h1>
+          <p class="thank-you-subtle" id="confirmation-subtitle">
+            Your request has been received successfully.
+          </p>
+        </div>
+
+        <article class="confirmation-card">
+          <div class="confirmation-section">
+            <p class="confirmation-label">Service Details</p>
+
+            <div class="confirmation-detail-row">
+              <span class="confirmation-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7V12L15 14"></path>
+                </svg>
+              </span>
+              <div class="confirmation-detail-content">
+                <p class="confirmation-date" id="confirmation-date">Date to be confirmed</p>
+                <span class="confirmation-time-pill" id="confirmation-time">Time to be confirmed</span>
+              </div>
+            </div>
+
+            <div class="confirmation-detail-row">
+              <span class="confirmation-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M12 21C15.5 17.4 18 14.6 18 11.5C18 8.46 15.54 6 12.5 6C9.46 6 7 8.46 7 11.5C7 14.6 9.5 17.4 13 21H12Z"></path>
+                  <circle cx="12.5" cy="11.5" r="2.4"></circle>
+                </svg>
+              </span>
+              <p class="confirmation-address" id="confirmation-address">Address to be confirmed</p>
+            </div>
+          </div>
+
+          <div class="confirmation-divider"></div>
+
+          <div class="confirmation-section">
+            <p class="confirmation-label">Order Summary</p>
+            <h2 class="confirmation-appliance" id="confirmation-appliance">Appliance repair</h2>
+
+            <div class="confirmation-price-row">
+              <span>Service Call</span>
+              <strong id="confirmation-service-call">$89.00</strong>
+            </div>
+
+            <div class="confirmation-total-row">
+              <span>Total estimated price</span>
+              <strong id="confirmation-total">$89.00</strong>
+            </div>
+          </div>
+        </article>
+
+        <p class="confirmation-helper">
+          If needed, our dispatcher will contact you.
+        </p>
+
+        <div class="thank-you-actions">
+          <a class="primary-button" href="/">Back to website</a>
+          <a class="ghost-button" href="tel:+18144037859">Call for help</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const storageKey = "flex-repairs-confirmation";
+      const maxAgeMs = 30 * 60 * 1000;
+      const currency = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+      });
+
+      function readConfirmation() {
+        try {
+          const raw = window.sessionStorage.getItem(storageKey);
+          if (!raw) return null;
+
+          const parsed = JSON.parse(raw);
+          if (!parsed || typeof parsed !== "object") return null;
+          if (!parsed.createdAt || Date.now() - parsed.createdAt > maxAgeMs) return null;
+
+          return parsed;
+        } catch {
+          return null;
+        }
+      }
+
+      const confirmation = readConfirmation();
+      if (!confirmation) return;
+
+      const heading = document.getElementById("confirmation-heading");
+      const subtitle = document.getElementById("confirmation-subtitle");
+      const date = document.getElementById("confirmation-date");
+      const time = document.getElementById("confirmation-time");
+      const address = document.getElementById("confirmation-address");
+      const appliance = document.getElementById("confirmation-appliance");
+      const serviceCall = document.getElementById("confirmation-service-call");
+      const total = document.getElementById("confirmation-total");
+
+      if (heading) {
+        heading.textContent = confirmation.firstName
+          ? `Thank you, ${confirmation.firstName}!`
+          : "Thank you!";
+      }
+
+      if (subtitle) {
+        subtitle.textContent = confirmation.email
+          ? `We have your request and we'll email your service details to ${confirmation.email}.`
+          : "We have your request and we'll email your service details soon.";
+      }
+
+      if (date) date.textContent = confirmation.preferredDate || "Date to be confirmed";
+      if (time) time.textContent = confirmation.preferredTime || "Time to be confirmed";
+      if (address) address.textContent = confirmation.address || "Address to be confirmed";
+      if (appliance) appliance.textContent = confirmation.appliance || "Appliance repair";
+
+      const amount = currency.format(Number(confirmation.serviceCallPrice || 89));
+      if (serviceCall) serviceCall.textContent = amount;
+      if (total) total.textContent = currency.format(Number(confirmation.totalEstimatedPrice || 89));
+    }());
+  </script>
+</body>
+</html>

@@ -276,11 +276,6 @@ async function createClient(accessToken, payload) {
 }
 
 async function findOrCreateClient(accessToken, payload) {
-  const existingId = await findExistingClient(accessToken, payload);
-  if (existingId) {
-    return existingId;
-  }
-
   return createClient(accessToken, payload);
 }
 

@@ -243,7 +243,7 @@ function getDateOptions() {
   });
 
   const options = [];
-  let offset = 1;
+  let offset = 0;
 
   while (options.length < 6) {
     const date = new Date();

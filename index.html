@@ -25,13 +25,19 @@
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <a class="brand" href="#top" aria-label="Flex Repairs home">
-        <img
-          class="brand-logo-image"
-          src="flex-repairs-logo-orange-tall-balanced.png"
-          alt="Flex Repairs LLC logo"
-        >
-      </a>
+      <div class="brand-stack">
+        <a class="brand" href="#top" aria-label="Flex Repairs home">
+          <img
+            class="brand-logo-image"
+            src="flex-repairs-logo-orange-tall-balanced.png"
+            alt="Flex Repairs LLC logo"
+          >
+        </a>
+        <div class="brand-tagline">
+          <span class="brand-tagline-service">Appliance Repair</span>
+          <span class="brand-tagline-area">Chicago &amp; Suburbs</span>
+        </div>
+      </div>
 
       <div class="topbar-actions">
         <a
@@ -409,6 +415,18 @@
         </a>
       </div>
     </section>
+  </div>
+
+  <div class="sticky-call-bar" role="complementary" aria-label="Call or book service">
+    <a class="sticky-call-bar-chip" href="tel:+13129004334">
+      <span class="sticky-call-bar-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M6.6 3H9.4C10 3 10.5 3.4 10.7 4L11.8 7.6C12 8.1 11.8 8.8 11.3 9.2L9.8 10.4C10.7 12.3 12.2 13.8 14.1 14.7L15.3 13.2C15.7 12.7 16.4 12.5 16.9 12.7L20.5 13.8C21.1 14 21.5 14.5 21.5 15.1V17.9C21.5 18.8 20.8 19.5 19.9 19.5H18.5C9.9 19.5 3 12.6 3 4V2.6C3 1.7 3.7 1 4.6 1H6.6Z"></path>
+        </svg>
+      </span>
+      <span>+1 (312) 900-4334</span>
+    </a>
+    <button class="primary-button" type="button" data-jump-to="1">Book now</button>
   </div>
 
   <script src="script-v2.js?v=20260412-brands89"></script>

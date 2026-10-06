@@ -239,6 +239,11 @@ async function createClient(accessToken, payload) {
         clientCreate(input: $input) {
           client {
             id
+            properties(first: 1) {
+              nodes {
+                id
+              }
+            }
           }
         }
       }
@@ -262,6 +267,19 @@ async function createClient(accessToken, payload) {
                 primary: true
               }
             ]
+          : [],
+        properties: payload.address
+          ? [
+              {
+                address: {
+                  street1: payload.address,
+                  city: payload.city || "Chicago",
+                  province: "IL",
+                  postalCode: payload.zipCode || "",
+                  country: "US"
+                }
+              }
+            ]
           : []
       }
     }
@@ -272,14 +290,27 @@ async function createClient(accessToken, payload) {
     throw new Error("Jobber client was not created.");
   }
 
-  return created.id;
+  const propertyNodes =
+    created.properties && Array.isArray(created.properties.nodes) ? created.properties.nodes : [];
+  const propertyId = propertyNodes.length ? propertyNodes[0].id : "";
+
+  return { clientId: created.id, propertyId };
 }
 
 async function findOrCreateClient(accessToken, payload) {
   return createClient(accessToken, payload);
 }
 
-async function createJobberRequest(accessToken, clientId, payload) {
+async function createJobberRequest(accessToken, clientId, propertyId, payload) {
+  const input = {
+    clientId,
+    title: buildRequestTitle(payload)
+  };
+
+  if (propertyId) {
+    input.propertyId = propertyId;
+  }
+
   const response = await jobberGraphQL(
     accessToken,
     `
@@ -292,12 +323,7 @@ async function createJobberRequest(accessToken, clientId, payload) {
         }
       }
     `,
-    {
-      input: {
-        clientId,
-        title: buildRequestTitle(payload)
-      }
-    }
+    { input }
   );
 
   const created = response && response.data && response.data.requestCreate ? response.data.requestCreate.request : null;
@@ -432,14 +458,15 @@ module.exports = async function handler(req, res) {
     }
 
     const accessToken = await getAccessToken();
-    const clientId = await findOrCreateClient(accessToken, payload);
-    const jobberRequest = await createJobberRequest(accessToken, clientId, payload);
+    const { clientId, propertyId } = await findOrCreateClient(accessToken, payload);
+    const jobberRequest = await createJobberRequest(accessToken, clientId, propertyId, payload);
     await attachRequestNote(accessToken, jobberRequest.id, payload);
 
     const record = {
       requestId: payload.requestId,
       jobberRequestId: jobberRequest.id,
       clientId,
+      propertyId,
       createdAt: payload.createdAt,
       payload
     };

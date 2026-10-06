@@ -262,7 +262,8 @@ async function createClient(accessToken, payload) {
           ? [
               {
                 number: payload.phone,
-                primary: true
+                primary: true,
+                smsAllowed: true
               }
             ]
           : [],

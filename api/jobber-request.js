@@ -239,10 +239,8 @@ async function createClient(accessToken, payload) {
         clientCreate(input: $input) {
           client {
             id
-            properties(first: 1) {
-              nodes {
-                id
-              }
+            properties {
+              id
             }
           }
         }
@@ -290,8 +288,7 @@ async function createClient(accessToken, payload) {
     throw new Error("Jobber client was not created.");
   }
 
-  const propertyNodes =
-    created.properties && Array.isArray(created.properties.nodes) ? created.properties.nodes : [];
+  const propertyNodes = Array.isArray(created.properties) ? created.properties : [];
   const propertyId = propertyNodes.length ? propertyNodes[0].id : "";
 
   return { clientId: created.id, propertyId };
